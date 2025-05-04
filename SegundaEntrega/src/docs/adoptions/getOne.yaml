@@ -1,0 +1,87 @@
+paths:
+  /api/adoptions/{id}:
+    get:
+      summary: Get a single adoption by ID (Only for logged-in admins)
+      description: Returns the details of a specific adoption, including the pet and owner information.
+      tags:
+        - Adoptions
+      security:
+        - cookieAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID of the adoption to retrieve
+      responses:
+        200:
+          description: Successfully retrieved the adoption
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adoption"
+        401:
+          description: Unauthorized (user not logged in)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Error:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                        example: 401
+                      message:
+                        type: string
+                        example: User not authenticated, please login 
+        403:
+          description: Forbidden (user not authorized)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Error:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                        example: 403
+                      message:
+                        type: string
+                        example: "User not authorized"              
+        404:
+          description: Adoption not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Error:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                        example: 404
+                      message:
+                        type: string
+                        example: "Adoption not found"
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Error:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                        example: 500
+                      message:
+                        type: string
+                        example: "Internal server error"

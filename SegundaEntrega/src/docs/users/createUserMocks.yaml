@@ -1,0 +1,41 @@
+paths:
+  /api/users/mocks/{amount}:
+    post:
+      summary: Create users mock
+      description: Create a specified number of users mock for testing purposes.
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: amount
+          required: true
+          description: Number of users to create.
+          schema:
+            type: integer
+            format: int32
+            description: The number of users to create. 
+      responses:
+        200:
+          description: Array of created users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/user"
+        500:
+            description: Internal server error
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    Error:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 500
+                        message:
+                          type: string
+                          example: "Internal server error"

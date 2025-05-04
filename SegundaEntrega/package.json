@@ -1,0 +1,39 @@
+{
+  "name": "segundaentrega",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha test/**/*.test.js",
+    "test:watch": "node --watch ./node_modules/mocha/bin/mocha.js test/**/*.test.js",
+    "dev": "node --watch --env-file=.env ./src/app.js",
+    "debug": "node --watch --env-file=.env ./src/app.js",
+    "prod": "node --watch --env-file=.env.production ./src/app.js",
+    "start": "node ./src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "docker": "^1.0.0",
+    "express": "^5.1.0",
+    "faker": "^6.6.6",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.1",
+    "multer": "^1.4.5-lts.2",
+    "supertest": "^7.1.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.17.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^9.6.0",
+    "chai": "^5.2.0",
+    "mocha": "^11.1.0",
+    "standard": "^17.1.2"
+  }
+}

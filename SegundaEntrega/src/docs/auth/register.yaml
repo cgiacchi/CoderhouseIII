@@ -1,0 +1,91 @@
+paths:
+  /api/auth/register:
+    post:
+      summary: User Registration
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: Roman
+                last_name:
+                  type: string
+                  example: Reojd
+                email:
+                  type: string
+                  format: email
+                  example: user457456@gmail.com
+                phone:
+                  type: string
+                  example: "+54123456789"
+                address:
+                  type: object
+                  properties:
+                    street:
+                      type: string
+                      example: Intendente campos
+                    number:
+                      type: integer
+                      example: 3456
+                    apartment:
+                      type: string
+                      example: "4to B"
+                    city:
+                      type: string
+                      example: San Martín
+                password:
+                  type: string
+                  format: password
+                  example: "!User123456"
+              required:
+                - first_name
+                - last_name
+                - email
+                - phone
+                - address
+                - password
+      responses:
+        "201":
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/user"
+        409:
+            description: Conflict (User already exists)
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    Error:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 409
+                        message:
+                          type: string
+                          example: "User already exists"
+        500:
+            description: Internal server error
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    Error:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 500
+                        message:
+                          type: string
+                          example: "Internal server error"
